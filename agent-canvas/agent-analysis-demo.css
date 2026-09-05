@@ -471,6 +471,60 @@ body {
   }
 }
 
+/* On phones, reserve the left side for the graph instead of letting
+   React Flow fit the canvas across the entire viewport. */
+@media (max-width: 600px) {
+  .aad-shell:has(.aad-processing-panel) .aad-layout {
+    overflow: hidden;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-canvas {
+    position: absolute !important;
+    top: 6px;
+    bottom: 6px;
+    left: 6px;
+    width: 62% !important;
+    height: calc(100% - 12px) !important;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-processing-panel {
+    inset: 6px 6px 6px auto !important;
+    width: 48% !important;
+    height: calc(100% - 12px) !important;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage {
+    justify-content: flex-end;
+    padding-right: 0;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+    width: min(47vw, 180px) !important;
+    height: min(58vh, 390px) !important;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage::after {
+    top: 10% !important;
+    right: -2% !important;
+    width: min(170px, 92%) !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .aad-shell:has(.aad-processing-panel) .aad-canvas {
+    width: 60% !important;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-processing-panel {
+    width: 50% !important;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+    width: min(45vw, 160px) !important;
+    height: min(54vh, 345px) !important;
+  }
+}
+
 /* Dense analyst workspace: 12-column structure, no auto-centred whitespace. */
 .aas-page { padding: 14px 20px 20px; }
 .aas-header, .aas-metric-row, .aas-grid { max-width: 1240px; }
