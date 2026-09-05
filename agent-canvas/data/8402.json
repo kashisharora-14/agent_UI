@@ -6,6 +6,7 @@
     "riskScore": 94,
     "summary": "Evidence currently supports a coordinated inside operation involving Arthur Vance, financial routing through Meridian Holdings, and a four-person associate network. Direct vault access remains unproven.",
     "insight": "Arthur Vance is the central actor. CDR, witness, location, and financial records converge around the heist window, while CCTV enhancement and ownership verification remain open gaps.",
+    "reasoning": "The conclusion is based on multiple independent signals converging on the same theory: call records, witness accounts, location matches, financial routing, and recovered digital artifacts. Together they support a coordinated inside operation involving Arthur Vance, while CCTV enhancement and ownership verification remain the final open gaps.",
     "metrics": { "agentsCompleted": 10, "evidenceItems": 147, "entitiesIdentified": 23, "overallConfidence": 93 }
   },
   "agents": [
