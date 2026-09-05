@@ -1034,3 +1034,19 @@ body {
 .aad-shell:has(.aad-processing-panel) .aad-character-glow {
   display: none !important;
 }
+
+/* Highlight the graph bubble that matches the active right-side avatar. */
+.aad-agent-node.active {
+  z-index: 12;
+}
+
+.aad-agent-node.active .aad-node-icon {
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--agent-color) 22%, transparent),
+    0 0 22px color-mix(in srgb, var(--agent-color) 72%, transparent);
+  transform: scale(1.08);
+}
+
+.aad-agent-node.active .aad-node-copy b {
+  color: var(--agent-color);
+}

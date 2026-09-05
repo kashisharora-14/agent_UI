@@ -7,7 +7,7 @@ import { AgentSummaryPage } from '../summary/AgentSummaryPage';
 
 interface Props { onClose: () => void }
 interface CaseNodeData { onSelect: () => void }
-interface AgentNodeData { result: AgentResult; selected: boolean; onSelect: (result: AgentResult) => void }
+interface AgentNodeData { result: AgentResult; selected: boolean; active?: boolean; onSelect: (result: AgentResult) => void }
 
 const agentSpeech: Record<string, string> = {
   '01': 'I’m mapping the main case theory.',
@@ -23,13 +23,13 @@ const agentSpeech: Record<string, string> = {
 };
 
 function CaseDataNode({ data }: NodeProps<CaseNodeData>) { return <div className="aad-case-node" onClick={data.onSelect}><Handle type="source" position={Position.Bottom} className="!h-2 !w-2 !border-0 !bg-gray-300" /><div className="aad-case-data-icon"><Database size={24} /></div><b>CASE DATA</b><span>Case #8402</span><small>Shared with 10 agents</small></div>; }
-function AgentNode({ data }: NodeProps<AgentNodeData>) { const { result } = data; return <div className={`aad-agent-node ${data.selected ? 'selected' : ''}`} style={{ '--agent-color': result.color } as React.CSSProperties} onClick={() => data.onSelect(result)}><Handle type="target" position={Position.Top} className="!h-2 !w-2 !border-0 !bg-gray-300" /><div className="aad-node-icon"><img src={result.imageUrl} alt={`${result.domain} portrait`} /></div><div className="aad-node-copy"><b>{result.name}</b><span>{result.domain}</span></div><CheckCircle2 size={15} className="aad-node-check" /></div>; }
+function AgentNode({ data }: NodeProps<AgentNodeData>) { const { result } = data; return <div className={`aad-agent-node ${data.selected ? 'selected' : ''} ${data.active ? 'active' : ''}`} style={{ '--agent-color': result.color } as React.CSSProperties} onClick={() => data.onSelect(result)}><Handle type="target" position={Position.Top} className="!h-2 !w-2 !border-0 !bg-gray-300" /><div className="aad-node-icon"><img src={result.imageUrl} alt={`${result.domain} portrait`} /></div><div className="aad-node-copy"><b>{result.name}</b><span>{result.domain}</span></div><CheckCircle2 size={15} className="aad-node-check" /></div>; }
 const nodeTypes = { caseNode: CaseDataNode, agentNode: AgentNode };
 
 interface ProcessingViewProps { results: AgentResult[]; nodes: Node[]; edges: Edge[]; revealedAgents: number; loadingProgress: number }
 function ProcessingView({ results, nodes, edges, revealedAgents, loadingProgress }: ProcessingViewProps) {
   const activeAgent = results[Math.min(revealedAgents, results.length - 1)];
-  const visibleNodes = nodes;
+  const visibleNodes = nodes.map((node) => node.type === 'agentNode' ? { ...node, data: { ...node.data, active: node.id === activeAgent.id } } : node);
   const visibleEdges = edges;
   const agentMessage = agentSpeech[activeAgent.id] ?? 'I am investigating the case evidence and links.';
   useEffect(() => { document.documentElement.style.setProperty('--aad-bubble-text', JSON.stringify(agentMessage)); return () => { document.documentElement.style.removeProperty('--aad-bubble-text'); }; }, [agentMessage]);
@@ -45,7 +45,7 @@ export function AgentAnalysisDemo({ onClose }: Props) {
   useEffect(() => { if (ready || results.length === 0) return; if (revealedAgents < results.length) { const revealTimer = window.setTimeout(() => setRevealedAgents((value) => Math.min(value + 1, results.length)), 1800); return () => window.clearTimeout(revealTimer); } const summaryTimer = window.setTimeout(() => { setReady(true); setSummaryOpen(true); }, 1400); return () => window.clearTimeout(summaryTimer); }, [ready, revealedAgents, results.length]);
   const loadingProgress = results.length ? Math.round((revealedAgents / results.length) * 100) : 0;
   const downloadSummary = (agent: AgentResult) => { const report = [`AEGIS AGENT ANALYSIS`, `Case #8402 — Operation Shadow Network`, ``, `${agent.id} — ${agent.name}`, `Domain: ${agent.domain}`, `Confidence: ${agent.confidence}%`, ``, `GENERATED SUMMARY`, agent.findings[0], ``, `KEY FINDINGS`, ...agent.findings.map((finding) => `• ${finding}`), ``, `LINKED CASE DATA`, ...agent.links.map((link) => `• ${link}`)].join('\n'); const url = URL.createObjectURL(new Blob([report], { type: 'text/plain;charset=utf-8' })); const anchor = document.createElement('a'); anchor.href = url; anchor.download = `case-8402-agent-${agent.id}-summary.txt`; anchor.click(); URL.revokeObjectURL(url); };
-  const initialNodes = useMemo<Node[]>(() => [{ id: 'case', type: 'caseNode', position: { x: 480, y: 280 }, data: { onSelect: () => setSelected(null) } }, ...results.map((result, index) => ({ id: result.id, type: 'agentNode', position: [{ x: 40, y: 30 }, { x: 340, y: 20 }, { x: 650, y: 30 }, { x: 750, y: 210 }, { x: 690, y: 430 }, { x: 400, y: 490 }, { x: 90, y: 430 }, { x: 0, y: 210 }, { x: 130, y: 125 }, { x: 450, y: 125 }][index], data: { result, selected: false, onSelect: setSelected } }))], [results]);
+  const initialNodes = useMemo<Node[]>(() => [{ id: 'case', type: 'caseNode', position: { x: 480, y: 280 }, data: { onSelect: () => setSelected(null) } }, ...results.map((result, index) => ({ id: result.id, type: 'agentNode', position: [{ x: 40, y: 30 }, { x: 340, y: 20 }, { x: 650, y: 30 }, { x: 750, y: 210 }, { x: 690, y: 430 }, { x: 400, y: 490 }, { x: 90, y: 430 }, { x: 0, y: 210 }, { x: 130, y: 125 }, { x: 450, y: 125 }][index], data: { result, selected: false, active: false, onSelect: setSelected } }))], [results]);
   const initialEdges = useMemo<Edge[]>(() => results.map((result) => ({ id: `case-${result.id}`, source: 'case', target: result.id, type: 'default', animated: true, style: { stroke: result.color, strokeWidth: 1.4, strokeDasharray: '2 5' } })), [results]);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes); const [edges, , onEdgesChange] = useEdgesState(initialEdges);
   const onNodeClick = (_event: React.MouseEvent, node: Node) => { const result = results.find((item) => item.id === node.id); if (result) { setSelected(result); setNodes((current) => current.map((item) => ({ ...item, data: { ...item.data, selected: item.id === result.id } }))); } };
