@@ -1009,3 +1009,18 @@ body {
     height: 22px;
   }
 }
+
+/* Keep the character present but secondary to the graph. */
+.aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+  width: min(32vw, 350px) !important;
+  height: min(76vh, 520px) !important;
+  margin-bottom: -22px;
+}
+
+@media (max-width: 600px) {
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+    width: min(38vw, 165px) !important;
+    height: min(54vh, 345px) !important;
+    margin-bottom: -12px;
+  }
+}
