@@ -131,6 +131,8 @@ body {
 .aad-shell:has(.aad-processing-panel) .aad-layout{display:block!important;position:relative}.aad-shell:has(.aad-processing-panel) .aad-canvas{width:100%;height:100%}.aad-shell:has(.aad-processing-panel) .aad-processing-panel{position:absolute!important;top:0;right:0;bottom:0;width:50%!important;height:100%!important;border:0;background:transparent;z-index:10;pointer-events:none}.aad-shell:has(.aad-processing-panel) .aad-character-stage{justify-content:flex-end;padding-right:12px}.aad-shell:has(.aad-processing-panel) .aad-character-stage img{height:390px;width:330px}.aad-shell:has(.aad-processing-panel) .aad-character-stage::after{top:25%;right:8%;width:215px;border-radius:28px;padding:16px 20px;font-size:14px;line-height:1.45;box-shadow:0 6px 18px #33415524}.aad-shell:has(.aad-processing-panel) .aad-character-glow{right:55px}.aad-shell:has(.aad-processing-panel) .aad-processing-panel>*{pointer-events:none}
 .aad-shell:has(.aad-processing-panel) .aad-layout{display:grid!important;position:relative;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:10px}.aad-shell:has(.aad-processing-panel) .aad-canvas{grid-column:1;height:100%;width:100%}.aad-shell:has(.aad-processing-panel) .aad-processing-panel{position:relative!important;grid-column:2;grid-row:1;top:auto;right:auto;bottom:auto;width:auto!important;height:100%!important;border:1px solid #dce5ed;background:#fff;z-index:2}.aad-shell:has(.aad-processing-panel) .aad-character-stage{height:100%;justify-content:center;padding:0}.aad-shell:has(.aad-processing-panel) .aad-character-stage img{height:350px;width:295px}.aad-shell:has(.aad-processing-panel) .aad-character-stage::after{top:20%;right:4%;width:220px;border-radius:30px;padding:18px 22px;content:var(--aad-bubble-text);font-size:14px;line-height:1.45;box-shadow:0 7px 20px #33415526}.aad-shell:has(.aad-processing-panel) .aad-character-glow{right:auto}
 .aad-shell:has(.aad-processing-panel) .aad-agent-node{pointer-events:none;cursor:default}
+.aad-shell:has(.aad-processing-panel) .aad-character-stage img{animation:aad-character-from-right .9s cubic-bezier(.2,.8,.2,1) both,aad-character-idle 2.8s ease-in-out .9s infinite}@keyframes aad-character-from-right{from{opacity:0;transform:translateX(120px) translateY(12px) scale(.94)}to{opacity:1;transform:translateX(0) translateY(0) scale(1)}}
+.aad-shell:has(.aad-processing-panel) .aad-character-stage img{animation:aad-character-in-out 1.8s cubic-bezier(.2,.8,.2,1) infinite}@keyframes aad-character-in-out{0%{opacity:0;transform:translateX(150px) translateY(8px) scale(.94)}18%{opacity:1;transform:translateX(0) translateY(0) scale(1)}72%{opacity:1;transform:translateX(0) translateY(-4px) scale(1)}100%{opacity:0;transform:translateX(150px) translateY(8px) scale(.94)}}
 .aad-shell:has(.aad-processing-panel) .aad-agent-timeline,.aad-shell:has(.aad-processing-panel) .aad-loading-bar,.aad-shell:has(.aad-processing-panel) .aad-processing-head,.aad-shell:has(.aad-processing-panel) .aad-processing-status,.aad-shell:has(.aad-processing-panel) .aad-canvas-label,.aad-shell:has(.aad-processing-panel) .aad-canvas-footer{display:none!important}.aad-shell:has(.aad-processing-panel) .aad-processing-panel{justify-content:flex-end;bottom:0;height:calc(100% - 48px);padding:0}.aad-shell:has(.aad-processing-panel) .aad-character-stage{min-height:0;height:100%;margin:0;align-items:flex-end}.aad-shell:has(.aad-processing-panel) .aad-character-stage img{height:440px;width:355px}.aad-shell:has(.aad-processing-panel) .aad-character-stage::after{top:88px;right:8px;width:165px;font-size:11px}.aad-shell:has(.aad-processing-panel) .aad-agent-node{width:110px;min-height:92px;padding:8px 6px;gap:4px}.aad-shell:has(.aad-processing-panel) .aad-node-icon{height:54px;width:54px;border-width:2px}.aad-shell:has(.aad-processing-panel) .aad-agent-node .aad-node-copy b{font-size:8px}.aad-shell:has(.aad-processing-panel) .aad-agent-node .aad-node-copy span{font-size:7px}.aad-shell:has(.aad-processing-panel) .aad-agent-node .aad-node-check{top:3px;right:2px}
 .aad-shell:has(.aad-processing-panel) .aad-processing-head,.aad-shell:has(.aad-processing-panel) .aad-processing-status{display:none}.aad-shell:has(.aad-processing-panel) .aad-character-stage{min-height:390px;margin:0 0 8px}.aad-shell:has(.aad-processing-panel) .aad-character-stage img{height:380px;width:310px}.aad-shell:has(.aad-processing-panel) .aad-character-stage::after{position:absolute;right:0;top:38px;z-index:3;width:150px;border:1px solid #dbe5ed;border-radius:10px 10px 2px 10px;background:#fff;padding:10px;color:#445b70;content:'I am investigating the case evidence and links.';font-size:10px;line-height:1.35;box-shadow:0 4px 12px #33415518}
 .aas-page{padding:10px 14px 16px;background:#f8f9fb}.aas-header{max-width:1160px;margin-bottom:7px;align-items:center}.aas-header small{font-size:7px;color:#8294a7}.aas-header h1{margin:3px 0 2px;color:#152f4a;font-size:17px;font-weight:500}.aas-header p{font-size:8px;color:#74889b}.aas-actions{gap:5px}.aas-actions button{padding:5px 8px;border-radius:4px;font-size:8px;color:#4d6780}.aas-metric-row{max-width:1160px;gap:6px;margin-bottom:7px}.aas-metric{min-height:48px;padding:7px 8px;border-color:#e3e9ef;border-radius:5px}.aas-metric b{font-size:13px}.aas-metric span{font-size:7px}.aas-metric small{font-size:6px}.aas-grid{max-width:1160px;grid-template-columns:minmax(0,1fr) 190px;gap:8px}.aas-card,.aas-download-panel{border-radius:5px}.aas-card{margin-bottom:7px;padding:10px}.aas-title{padding-bottom:6px}.aas-title h2,.aas-card h2,.aas-download-panel h2{font-size:11px}.aas-title span{font-size:7px}.aas-summary-columns{min-height:143px}.aas-completed{padding:9px 10px}.aas-completed h3{margin-bottom:7px;font-size:8px}.aas-completed p{margin:7px 0;font-size:7px}.aas-completed strong{margin-top:10px;padding:5px;font-size:7px}.aas-subject{padding:9px 7px}.aas-subject small,.aas-insight small{font-size:6px}.aas-subject img{height:58px;width:58px;margin-top:3px}.aas-subject h3{font-size:9px}.aas-subject p{font-size:7px}.aas-subject button{margin-top:4px;padding:3px 6px;font-size:6px}.aas-insight{padding:10px}.aas-insight h3{margin-bottom:6px;font-size:8px}.aas-bars label{margin:6px 0;font-size:7px}.aas-insight h4{margin:9px 0 3px;font-size:7px}.aas-reason p,.aas-timeline p{font-size:8px}.aas-download-panel{padding:9px;max-height:calc(100vh - 145px)}.aas-download-panel h2{font-size:10px}.aas-download-panel button{padding:5px;margin-top:5px;gap:5px}.aas-download-panel img{height:27px;width:27px}.aas-download-panel b{font-size:7px}.aas-download-panel small{font-size:6px}.aas-download-panel button>svg{height:11px;width:11px}
@@ -1033,6 +1035,160 @@ body {
 
 .aad-shell:has(.aad-processing-panel) .aad-character-glow {
   display: none !important;
+}
+
+/* Animate only the active avatar: enter from the right, pause, then exit right. */
+.aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+  animation: aad-avatar-marquee 8s linear infinite !important;
+  transform: translateX(0);
+}
+
+@keyframes aad-avatar-marquee {
+  0% { opacity: 1; transform: translateX(115%); }
+  100% { opacity: 1; transform: translateX(-135%); }
+}
+
+/* Use the stage edges themselves so the image visibly crosses the whole window. */
+.aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+  position: absolute !important;
+  left: 115% !important;
+  bottom: 0;
+  transform: none !important;
+  animation: aad-avatar-window-slide 8s linear infinite !important;
+}
+
+@keyframes aad-avatar-window-slide {
+  from { left: 115%; }
+  to { left: -135%; }
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-character-stage::after {
+  left: 125% !important;
+  right: auto !important;
+  animation: aad-bubble-window-slide 8s linear infinite !important;
+}
+
+@keyframes aad-bubble-window-slide {
+  from { left: 125%; }
+  to { left: -150%; }
+}
+
+/* Final overflow-safe motion: the character and bubble stay clipped inside the right panel. */
+.aad-shell:has(.aad-processing-panel),
+.aad-shell:has(.aad-processing-panel) .aad-layout,
+.aad-shell:has(.aad-processing-panel) .aad-processing-panel,
+.aad-shell:has(.aad-processing-panel) .aad-character-stage {
+  overflow: hidden !important;
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+  left: 50% !important;
+  right: auto !important;
+  margin-left: -135px;
+  animation: aad-avatar-cross-panel 8s linear infinite !important;
+}
+
+@keyframes aad-avatar-cross-panel {
+  from { opacity: 1; transform: translate3d(130%, 0, 0) !important; }
+  to { opacity: 1; transform: translate3d(-180%, 0, 0) !important; }
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-character-stage::after {
+  left: 50% !important;
+  right: auto !important;
+  margin-left: 30px;
+  animation: aad-bubble-cross-panel 8s linear infinite !important;
+}
+
+@keyframes aad-bubble-cross-panel {
+  from { transform: translate3d(180%, 0, 0); }
+  to { transform: translate3d(-220%, 0, 0); }
+}
+
+/* Deterministic handoff: each image crosses from outside the right edge to outside the left edge. */
+.aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+  left: auto !important;
+  right: -360px !important;
+  margin-left: 0 !important;
+  transform: none !important;
+  animation: aad-avatar-right-to-left 8s linear infinite !important;
+  will-change: right;
+}
+
+@keyframes aad-avatar-right-to-left {
+  from { right: -360px; }
+  to { right: calc(100% + 360px); }
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-character-stage::after {
+  left: auto !important;
+  right: -250px !important;
+  margin-left: 0 !important;
+  transform: none !important;
+  animation: aad-bubble-right-to-left 8s linear infinite !important;
+  will-change: right;
+}
+
+@keyframes aad-bubble-right-to-left {
+  from { right: -250px; }
+  to { right: calc(100% + 250px); }
+}
+
+/* Reliable contained motion: transform the image inside the clipped stage. */
+.aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+  left: 50% !important;
+  right: auto !important;
+  margin-left: -135px !important;
+  transform: translateX(0);
+  animation: aad-avatar-visible-traverse 8s linear infinite !important;
+  opacity: 1 !important;
+}
+
+@keyframes aad-avatar-visible-traverse {
+  0% { opacity: 1; transform: translateX(150%); }
+  100% { opacity: 1; transform: translateX(-250%); }
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-character-stage::after {
+  left: 50% !important;
+  right: auto !important;
+  margin-left: 20px !important;
+  transform: translateX(0);
+  animation: aad-bubble-visible-traverse 8s linear infinite !important;
+}
+
+@keyframes aad-bubble-visible-traverse {
+  0% { transform: translateX(180%); }
+  100% { transform: translateX(-280%); }
+}
+
+/* Simple fast handoff: centered avatar fades in and out before the next one. */
+.aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+  left: 50% !important;
+  right: auto !important;
+  bottom: 0 !important;
+  margin-left: -135px !important;
+  transform: none !important;
+  animation: aad-avatar-fast-fade 1.6s ease-in-out infinite !important;
+  opacity: 1 !important;
+}
+
+@keyframes aad-avatar-fast-fade {
+  0%, 100% { opacity: 0; }
+  22%, 78% { opacity: 1; }
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-character-stage::after {
+  left: 50% !important;
+  right: auto !important;
+  margin-left: 20px !important;
+  transform: none !important;
+  animation: aad-bubble-fast-fade 1.6s ease-in-out infinite !important;
+}
+
+@keyframes aad-bubble-fast-fade {
+  0%, 100% { opacity: 0; }
+  22%, 78% { opacity: 1; }
 }
 
 /* Highlight the graph bubble that matches the active right-side avatar. */
