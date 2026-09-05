@@ -525,6 +525,71 @@ body {
   }
 }
 
+/* Final mobile composition: a clean graph column on the left and the active
+   analyst column on the right. Keep them side-by-side rather than overlaying
+   the character on top of the graph. */
+@media (max-width: 600px) {
+  .aad-shell:has(.aad-processing-panel) .aad-layout {
+    display: grid !important;
+    grid-template-columns: 58% 42% !important;
+    gap: 0 !important;
+    padding: 6px !important;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-canvas {
+    position: relative !important;
+    inset: auto !important;
+    grid-column: 1;
+    grid-row: 1;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-processing-panel {
+    position: relative !important;
+    inset: auto !important;
+    grid-column: 2;
+    grid-row: 1;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage {
+    width: 100%;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+    width: 100% !important;
+    max-width: 170px;
+    height: min(56vh, 370px) !important;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage::after {
+    top: 9% !important;
+    right: 2% !important;
+    width: 94% !important;
+    max-width: 170px;
+    padding: 8px 9px;
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 390px) {
+  .aad-shell:has(.aad-processing-panel) .aad-layout {
+    grid-template-columns: 56% 44% !important;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+    max-width: 145px;
+    height: min(53vh, 330px) !important;
+  }
+}
+
 /* Dense analyst workspace: 12-column structure, no auto-centred whitespace. */
 .aas-page { padding: 14px 20px 20px; }
 .aas-header, .aas-metric-row, .aas-grid { max-width: 1240px; }
