@@ -967,3 +967,45 @@ body {
     width: 42% !important;
   }
 }
+
+/* Final character scale and grounding pass. */
+.aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+  width: min(40vw, 430px) !important;
+  height: min(84vh, 580px) !important;
+  margin-bottom: -14px;
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-character-stage::after {
+  top: 8% !important;
+  width: min(260px, 46%) !important;
+  padding: 15px 17px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-character-glow {
+  bottom: 0 !important;
+  width: 210px;
+  height: 30px;
+  opacity: .24;
+}
+
+@media (max-width: 600px) {
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+    width: min(48vw, 210px) !important;
+    height: min(62vh, 430px) !important;
+    margin-bottom: -10px;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage::after {
+    top: 5% !important;
+    width: min(210px, 98%) !important;
+    padding: 10px 11px;
+    font-size: 9px;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-glow {
+    width: 145px;
+    height: 22px;
+  }
+}
