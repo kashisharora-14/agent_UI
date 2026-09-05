@@ -214,6 +214,212 @@ body {
 @keyframes aas-profile-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @media(max-width:850px) { .aas-profile-head img { width: 58px !important; height: 58px !important; flex-basis: 58px; } }
 
+/* Keep each analyst's thought attached to their portrait so the case graph reads
+   as a conversation instead of a collection of floating labels. */
+.aad-agent-node {
+  position: relative;
+  overflow: visible;
+}
+
+.aad-agent-bubble {
+  position: absolute;
+  z-index: 8;
+  width: 154px;
+  box-sizing: border-box;
+  border: 1px solid color-mix(in srgb, var(--agent-color) 28%, #dbe5ee);
+  border-radius: 12px;
+  background: #fff;
+  padding: 8px 10px;
+  color: #486176;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  box-shadow: 0 5px 14px rgb(51 65 85 / 12%);
+  pointer-events: none;
+}
+
+.aad-agent-bubble::after {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid color-mix(in srgb, var(--agent-color) 28%, #dbe5ee);
+  border-bottom: 1px solid color-mix(in srgb, var(--agent-color) 28%, #dbe5ee);
+  background: #fff;
+  content: '';
+  transform: rotate(45deg);
+}
+
+.aad-bubble-top .aad-agent-bubble {
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.aad-bubble-top .aad-agent-bubble::after {
+  bottom: -5px;
+  left: calc(50% - 4px);
+  transform: rotate(45deg);
+}
+
+.aad-bubble-right .aad-agent-bubble {
+  top: 50%;
+  left: calc(100% + 12px);
+  transform: translateY(-50%);
+}
+
+.aad-bubble-right .aad-agent-bubble::after {
+  top: calc(50% - 4px);
+  left: -5px;
+  border-top: 1px solid color-mix(in srgb, var(--agent-color) 28%, #dbe5ee);
+  border-right: 0;
+  transform: rotate(45deg);
+}
+
+.aad-bubble-bottom .aad-agent-bubble {
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.aad-bubble-bottom .aad-agent-bubble::after {
+  top: -5px;
+  left: calc(50% - 4px);
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 1px solid color-mix(in srgb, var(--agent-color) 28%, #dbe5ee);
+  border-top: 1px solid color-mix(in srgb, var(--agent-color) 28%, #dbe5ee);
+  transform: rotate(45deg);
+}
+
+.aad-bubble-left .aad-agent-bubble {
+  top: 50%;
+  right: calc(100% + 12px);
+  transform: translateY(-50%);
+}
+
+.aad-bubble-left .aad-agent-bubble::after {
+  top: calc(50% - 4px);
+  right: -5px;
+  border-bottom: 0;
+  border-left: 1px solid color-mix(in srgb, var(--agent-color) 28%, #dbe5ee);
+  border-top: 1px solid color-mix(in srgb, var(--agent-color) 28%, #dbe5ee);
+  transform: rotate(45deg);
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-agent-bubble {
+  width: 128px;
+  padding: 6px 8px;
+  font-size: 8px;
+}
+
+@media (max-width: 600px) {
+  .aad-agent-bubble {
+    width: 118px;
+    padding: 6px 7px;
+    font-size: 8px;
+  }
+}
+
+/* The larger active-agent portrait should use the same role-specific message
+   as the matching graph node instead of the legacy generic copy. */
+.aad-shell:has(.aad-processing-panel) .aad-character-stage::after {
+  content: var(--aad-bubble-text);
+}
+
+/* Reference-style processing scene: the graph stays full-bleed in the back
+   while the active full-body analyst floats above it on the right. */
+.aad-shell:has(.aad-processing-panel) .aad-layout {
+  position: relative !important;
+  display: block !important;
+  height: calc(100% - 48px) !important;
+  padding: 10px !important;
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-processing-panel {
+  position: absolute !important;
+  inset: 10px 10px 10px auto !important;
+  z-index: 10;
+  display: flex !important;
+  width: min(48%, 590px) !important;
+  height: calc(100% - 20px) !important;
+  box-sizing: border-box;
+  align-items: stretch;
+  justify-content: flex-end;
+  border: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  pointer-events: none;
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-character-stage {
+  position: relative;
+  width: 100%;
+  height: 100% !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: visible !important;
+  background: transparent !important;
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+  position: relative;
+  z-index: 2;
+  width: min(34vw, 370px) !important;
+  height: min(76vh, 520px) !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-character-stage::after {
+  top: 17% !important;
+  right: 1% !important;
+  z-index: 4;
+  width: min(220px, 42%) !important;
+  box-sizing: border-box;
+  border: 1px solid #dbe5ed;
+  border-radius: 22px 22px 4px 22px;
+  background: rgb(255 255 255 / 96%);
+  padding: 13px 15px;
+  color: #40566b;
+  content: var(--aad-bubble-text) !important;
+  font-size: 11px;
+  line-height: 1.45;
+  box-shadow: 0 7px 20px rgb(51 65 85 / 16%);
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-character-glow {
+  right: 16%;
+  bottom: 3px;
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-processing-panel > * {
+  pointer-events: none;
+}
+
+@media (max-width: 850px) {
+  .aad-shell:has(.aad-processing-panel) .aad-processing-panel {
+    width: 58% !important;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+    width: min(43vw, 300px) !important;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage::after {
+    right: 0 !important;
+    width: 44% !important;
+    font-size: 10px;
+  }
+}
+
 /* Dense analyst workspace: 12-column structure, no auto-centred whitespace. */
 .aas-page { padding: 14px 20px 20px; }
 .aas-header, .aas-metric-row, .aas-grid { max-width: 1240px; }

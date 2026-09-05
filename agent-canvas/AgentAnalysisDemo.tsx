@@ -9,6 +9,19 @@ interface Props { onClose: () => void }
 interface CaseNodeData { onSelect: () => void }
 interface AgentNodeData { result: AgentResult; selected: boolean; onSelect: (result: AgentResult) => void }
 
+const agentSpeech: Record<string, string> = {
+  '01': 'I’m mapping the main case theory.',
+  '02': 'I’m tracing people, links, and intermediaries.',
+  '03': 'I’m recovering digital evidence and verifying hashes.',
+  '04': 'I’m following the money trail.',
+  '05': 'I’m matching calls, devices, and tower locations.',
+  '06': 'I’m aligning timestamps into one timeline.',
+  '07': 'I’m testing whether the evidence proves the case.',
+  '08': 'I’m stress-testing alternative explanations.',
+  '09': 'I’m checking every claim against its source.',
+  '10': 'I’m weighing the strongest conclusion neutrally.',
+};
+
 function CaseDataNode({ data }: NodeProps<CaseNodeData>) { return <div className="aad-case-node" onClick={data.onSelect}><Handle type="source" position={Position.Bottom} className="!h-2 !w-2 !border-0 !bg-gray-300" /><div className="aad-case-data-icon"><Database size={24} /></div><b>CASE DATA</b><span>Case #8402</span><small>Shared with 10 agents</small></div>; }
 function AgentNode({ data }: NodeProps<AgentNodeData>) { const { result } = data; return <div className={`aad-agent-node ${data.selected ? 'selected' : ''}`} style={{ '--agent-color': result.color } as React.CSSProperties} onClick={() => data.onSelect(result)}><Handle type="target" position={Position.Top} className="!h-2 !w-2 !border-0 !bg-gray-300" /><div className="aad-node-icon"><img src={result.imageUrl} alt={`${result.domain} portrait`} /></div><div className="aad-node-copy"><b>{result.name}</b><span>{result.domain}</span></div><CheckCircle2 size={15} className="aad-node-check" /></div>; }
 const nodeTypes = { caseNode: CaseDataNode, agentNode: AgentNode };
@@ -18,7 +31,7 @@ function ProcessingView({ results, nodes, edges, revealedAgents, loadingProgress
   const activeAgent = results[Math.min(revealedAgents, results.length - 1)];
   const visibleNodes = nodes;
   const visibleEdges = edges;
-  const agentMessage = activeAgent.domain.toLowerCase().includes('financial') ? 'I am investigating financial records and money transfers.' : activeAgent.domain.toLowerCase().includes('telecom') ? 'I am investigating calls, devices, and network links.' : activeAgent.domain.toLowerCase().includes('forensic') ? 'I am investigating digital evidence and recovered artifacts.' : activeAgent.domain.toLowerCase().includes('prosecutor') ? 'I am investigating evidence strength and proof gaps.' : activeAgent.domain.toLowerCase().includes('defense') ? 'I am investigating alternative explanations and challenges.' : activeAgent.domain.toLowerCase().includes('chronologist') ? 'I am investigating the order of events and timestamps.' : activeAgent.domain.toLowerCase().includes('judge') ? 'I am investigating the strongest supported conclusion.' : activeAgent.domain.toLowerCase().includes('auditor') ? 'I am investigating evidence integrity and claim validation.' : activeAgent.domain.toLowerCase().includes('intelligence') ? 'I am investigating people, links, and the wider network.' : 'I am investigating the case theory and key leads.';
+  const agentMessage = agentSpeech[activeAgent.id] ?? 'I am investigating the case evidence and links.';
   useEffect(() => { document.documentElement.style.setProperty('--aad-bubble-text', JSON.stringify(agentMessage)); return () => { document.documentElement.style.removeProperty('--aad-bubble-text'); }; }, [agentMessage]);
   const stage = revealedAgents === results.length ? 'Building the final investigation summary' : revealedAgents === 0 ? 'Reading case data and evidence sources' : `Processing ${activeAgent.name}`;
   const characterImage = activeAgent.id === '01' ? '/images/CBI.png' : activeAgent.id === '02' ? '/images/fieldinvest.png' : activeAgent.id === '03' ? '/images/cyber.png' : activeAgent.id === '04' ? '/images/finance.png' : activeAgent.id === '05' ? '/images/telecom.png' : activeAgent.id === '06' ? '/images/socialmedia.png' : activeAgent.id === '07' ? '/images/law.png' : activeAgent.id === '08' ? '/images/police.png' : activeAgent.id === '09' ? '/images/kyc.png' : activeAgent.id === '10' ? '/images/10thagent.png' : activeAgent.imageUrl;
