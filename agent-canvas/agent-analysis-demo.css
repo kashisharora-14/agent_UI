@@ -1171,3 +1171,164 @@ body {
     width: 58px;
   }
 }
+
+/* Larger, coordinated summary cards for the timeline and conclusion. */
+.attached-timeline {
+  margin-top: 14px;
+  border: 1px solid #d7e6f2;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ffffff 0%, #f7fbff 100%);
+  box-shadow: 0 5px 18px rgb(50 89 120 / 8%);
+}
+
+.attached-timeline .command-main-title {
+  min-height: 58px;
+  padding: 0 18px;
+  border-bottom-color: #e2edf5;
+}
+
+.attached-timeline .command-main-title b {
+  color: #294d6a;
+  font-size: 14px;
+  letter-spacing: .04em;
+}
+
+.attached-timeline .command-main-title span {
+  color: #6f899e;
+  font-size: 11px;
+}
+
+.attached-track {
+  gap: 18px;
+  padding: 22px 28px 28px;
+}
+
+.attached-track:before {
+  top: 39px;
+  right: 8%;
+  left: 8%;
+  border-top-width: 2px;
+  border-color: #cfe0ed;
+}
+
+.attached-track i {
+  width: 46px;
+  height: 46px;
+  margin-bottom: 12px;
+  border: 2px solid #b6d1e4;
+  background: #edf7fd;
+  color: #2e78ad;
+  box-shadow: 0 3px 9px rgb(53 111 151 / 12%);
+}
+
+.attached-track i.active {
+  border-color: #79c39b;
+  background: #ecfaf2;
+  color: #208455;
+  box-shadow: 0 0 0 4px rgb(86 180 125 / 12%), 0 4px 12px rgb(43 137 86 / 18%);
+}
+
+.attached-track b {
+  color: #284b68;
+  font-size: 12px;
+}
+
+.attached-track small {
+  margin-top: 4px;
+  color: #718ba0;
+  font-size: 10px;
+}
+
+.attached-track span {
+  margin-top: 5px;
+  color: #31845f;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.command-reason {
+  align-items: flex-start;
+  gap: 13px;
+  margin-top: 14px;
+  padding: 17px 19px;
+  border: 1px solid #cfe0ef;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f3f9ff 0%, #ffffff 72%);
+  box-shadow: 0 5px 18px rgb(50 89 120 / 8%);
+}
+
+.command-reason > svg {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  border: 1px solid #bdd7eb;
+  border-radius: 7px;
+  background: #e9f5fe;
+  padding: 5px;
+  color: #347eaf;
+}
+
+.command-reason b {
+  color: #294d6a;
+  font-size: 14px;
+}
+
+.command-reason p {
+  margin-top: 7px;
+  color: #5e778d;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 800px) {
+  .attached-timeline .command-main-title {
+    min-height: 52px;
+    padding: 0 13px;
+  }
+
+  .attached-timeline .command-main-title b {
+    font-size: 12px;
+  }
+
+  .attached-timeline .command-main-title span {
+    font-size: 9px;
+  }
+
+  .attached-track {
+    gap: 8px;
+    padding: 17px 10px 21px;
+  }
+
+  .attached-track:before {
+    top: 33px;
+    right: 5%;
+    left: 5%;
+  }
+
+  .attached-track i {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 8px;
+  }
+
+  .attached-track b {
+    font-size: 9px;
+  }
+
+  .attached-track small,
+  .attached-track span {
+    font-size: 8px;
+  }
+
+  .command-reason {
+    padding: 14px;
+  }
+
+  .command-reason b {
+    font-size: 12px;
+  }
+
+  .command-reason p {
+    font-size: 10px;
+  }
+}
