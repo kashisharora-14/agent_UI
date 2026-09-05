@@ -937,3 +937,10 @@ body {
     right: 3%;
   }
 }
+
+/* Keep the speech bubble in front of the avatar, centered above it. */
+.aad-shell:has(.aad-processing-panel) .aad-character-stage::after {
+  right: auto !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
