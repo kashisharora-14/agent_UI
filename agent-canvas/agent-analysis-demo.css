@@ -420,6 +420,57 @@ body {
   }
 }
 
+@media (max-width: 600px) {
+  .aad-shell:has(.aad-processing-panel) .aad-layout {
+    height: calc(100% - 48px) !important;
+    padding: 6px !important;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-processing-panel {
+    inset: 6px !important;
+    width: calc(100% - 12px) !important;
+    height: calc(100% - 12px) !important;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage {
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-right: 3%;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+    width: min(62vw, 260px) !important;
+    height: min(58vh, 410px) !important;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage::after {
+    top: 12% !important;
+    right: 3% !important;
+    width: min(48%, 190px) !important;
+    border-radius: 16px 16px 3px 16px;
+    padding: 9px 10px;
+    font-size: 9px;
+    line-height: 1.35;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-glow {
+    right: 10%;
+  }
+}
+
+@media (max-width: 390px) {
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+    width: min(64vw, 225px) !important;
+    height: min(55vh, 350px) !important;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-character-stage::after {
+    top: 10% !important;
+    width: 52% !important;
+    font-size: 8px;
+  }
+}
+
 /* Dense analyst workspace: 12-column structure, no auto-centred whitespace. */
 .aas-page { padding: 14px 20px 20px; }
 .aas-header, .aas-metric-row, .aas-grid { max-width: 1240px; }
