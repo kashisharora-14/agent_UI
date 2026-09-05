@@ -1024,3 +1024,13 @@ body {
     margin-bottom: -12px;
   }
 }
+
+/* Keep the avatar still and remove the decorative floor shadow. */
+.aad-shell:has(.aad-processing-panel) .aad-character-stage img {
+  animation: none !important;
+  transform: none !important;
+}
+
+.aad-shell:has(.aad-processing-panel) .aad-character-glow {
+  display: none !important;
+}
