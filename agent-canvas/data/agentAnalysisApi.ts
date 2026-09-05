@@ -8,16 +8,6 @@ export interface AgentAnalysisResponse {
 
 function portraitForAgent(id: string, fallback: string) {
   const imageNumber = Number.parseInt(id, 10);
-  if (id === '01') return '/images/1.png';
-  if (id === '02') return '/images/2.png';
-  if (id === '03') return '/images/3.png';
-  if (id === '04') return '/images/finance.png';
-  if (id === '05') return '/images/telecom.png';
-  if (id === '07') return '/images/law.png';
-  if (id === '09') return '/images/kyc.png';
-  if (id === '06') return '/images/socialmedia.png';
-  if (id === '08') return '/images/police.png';
-  if (id === '10') return '/images/10thagent.png';
   return Number.isNaN(imageNumber) ? fallback : `/images/${imageNumber}.png`;
 }
 
