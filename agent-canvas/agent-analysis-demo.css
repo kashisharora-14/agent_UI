@@ -944,3 +944,26 @@ body {
   left: 50% !important;
   transform: translateX(-50%) !important;
 }
+
+/* Keep the graph's fit-view region on the left while the page remains one
+   continuous background behind the right-side analyst. */
+@media (min-width: 601px) {
+  .aad-shell:has(.aad-processing-panel) .aad-layout {
+    background: #f8fafc;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-canvas {
+    width: 72% !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-canvas .react-flow {
+    background: #f8fafc;
+  }
+
+  .aad-shell:has(.aad-processing-panel) .aad-processing-panel {
+    width: 42% !important;
+  }
+}
